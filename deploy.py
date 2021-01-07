@@ -44,7 +44,6 @@ def get_sequence_of_tokens(corpus):
 input_sequences, total_words = get_sequence_of_tokens(corpus)
 
 
-@st.cache(hash_funcs={tf.util.object_identity.ObjectIdentityDictionary: generate_text})
 def generate_text(seed_text, next_words, model, max_seq_len):
     for _ in range(next_words):
         token_list = t.texts_to_sequences([seed_text])[0]

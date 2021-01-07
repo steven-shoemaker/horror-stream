@@ -3,8 +3,6 @@ import keras
 import deploy
 import tensorflow as tf
 
-st.cache(allow_output_mutation=True, max_entries=2, ttl=3600)
-
 loaded = tf.keras.models.load_model('New_Model.h5')
 
 #===========================================#
@@ -30,6 +28,7 @@ remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 st.subheader("Enter your name:")
 seed = st.text_input('')
 
+@st.cache()
 if st.button('Scare Me'):
     generated_text = deploy.generate_text(seed, 30, loaded, 76)
     st.subheader("Your Terrible Movie:")
