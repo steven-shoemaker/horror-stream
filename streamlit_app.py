@@ -1,7 +1,7 @@
 import streamlit as st
 import keras
 import deploy
-import tf
+import tensorflow as tf
 
 loaded = tf.keras.models.load_model('New_Model.h5')
 
