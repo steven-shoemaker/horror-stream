@@ -8,7 +8,7 @@ loaded = tf.keras.models.load_model('New_Model.h5')
 #===========================================#
 #              Streamlit Code               #
 #===========================================#
-desc = "Uses a neural network trained on over *1000* horror movies to generate sometimes good, mostly non-sensical horror movie plots."
+desc = "Uses a neural network trained on over *1000* horror movies to generate sometimes good, *mostly non-sensical* horror movie plots. "
 
 st.title('Horror Movie Generator')
 st.write(desc)
