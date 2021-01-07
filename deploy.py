@@ -10,6 +10,8 @@ import numpy as np
 import string, os 
 import warnings
 import tensorflow as tf
+import streamlit as st
+
 warnings.filterwarnings("ignore")
 
 
@@ -18,6 +20,7 @@ corpus = [str(x) for x in movieset["description"]]
 
 t = Tokenizer(num_words=None, filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n', lower=True, split=' ', char_level=False, oov_token=None, document_count=0)
 
+@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def generate_padded_sequences(input_sequences):
     max_sequence_len = max([len(x) for x in input_sequences])
     input_sequences = np.array(pad_sequences(input_sequences, maxlen = max_sequence_len, padding = 'pre'))
@@ -26,7 +29,7 @@ def generate_padded_sequences(input_sequences):
     
     return predictors, label, max_sequence_len
 
-
+@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def get_sequence_of_tokens(corpus):
     t.fit_on_texts(corpus)
     total_words = len(t.word_index) + 1
@@ -41,6 +44,7 @@ def get_sequence_of_tokens(corpus):
     return input_sequences, total_words
 input_sequences, total_words = get_sequence_of_tokens(corpus)
 
+@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def generate_text(seed_text, next_words, model, max_seq_len):
     for _ in range(next_words):
         token_list = t.texts_to_sequences([seed_text])[0]
