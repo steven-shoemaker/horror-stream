@@ -11,6 +11,8 @@ import string, os
 import warnings
 import tensorflow as tf
 import streamlit as st
+import tensorflow as tf
+from tensorflow.python.util import object_identity
 
 warnings.filterwarnings("ignore")
 
@@ -28,7 +30,7 @@ def generate_padded_sequences(input_sequences):
     
     return predictors, label, max_sequence_len
 
-
+@st.cache(ttl=60*5,max_entries=20)
 def get_sequence_of_tokens(corpus):
     t.fit_on_texts(corpus)
     total_words = len(t.word_index) + 1
