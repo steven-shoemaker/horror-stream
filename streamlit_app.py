@@ -3,6 +3,8 @@ import keras
 import deploy
 import tensorflow as tf
 
+@st.cache(allow_output_mutation=True, max_entries=2, ttl=3600)
+
 loaded = tf.keras.models.load_model('New_Model.h5')
 
 #===========================================#
