@@ -20,7 +20,6 @@ corpus = [str(x) for x in movieset["description"]]
 
 t = Tokenizer(num_words=None, filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n', lower=True, split=' ', char_level=False, oov_token=None, document_count=0)
 
-@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
 def generate_padded_sequences(input_sequences):
     max_sequence_len = max([len(x) for x in input_sequences])
     input_sequences = np.array(pad_sequences(input_sequences, maxlen = max_sequence_len, padding = 'pre'))
@@ -29,7 +28,7 @@ def generate_padded_sequences(input_sequences):
     
     return predictors, label, max_sequence_len
 
-@st.cache(allow_output_mutation=True, max_entries=10, ttl=3600)
+
 def get_sequence_of_tokens(corpus):
     t.fit_on_texts(corpus)
     total_words = len(t.word_index) + 1
