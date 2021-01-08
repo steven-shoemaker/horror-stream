@@ -28,7 +28,9 @@ remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 st.subheader("Enter your name:")
 seed = st.text_input('')
 
-if st.button('Scare Me'):
-    generated_text = deploy.generate_text(seed, 30, loaded, 76)
-    st.subheader("Your Terrible Movie:")
-    st.write(generated_text)
+@st.cache()
+def generate():
+    if st.button('Scare Me'):
+        generated_text = deploy.generate_text(seed, 30, loaded, 76)
+        st.subheader("Your Terrible Movie:")
+        st.write(generated_text)
