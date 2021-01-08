@@ -29,7 +29,7 @@ st.subheader("Enter your name:")
 seed = st.text_input('')
 
 
-    if st.button('Scare Me'):
-        generated_text = deploy.generate_text(seed, 30, loaded, 76)
-        st.subheader("Your Terrible Movie:")
-        st.write(generated_text)
+if st.button('Scare Me'):
+    generated_text = deploy.generate_text(seed, 30, loaded, 76)
+    st.subheader("Your Terrible Movie:")
+    st.write(generated_text)
